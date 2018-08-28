@@ -1,9 +1,3 @@
-/**
- * @Author: Ziyang
- * @Email: meetziyang@gmail.com
- * @Date: 2018/8/26 23:38
- * @Description:
- */
 package cn.ghy.model;
 
 import java.util.Date;
@@ -58,5 +52,16 @@ public class MemberLog {
 
   public void setCreateTime(Date createTime) {
     this.createTime = createTime;
+  }
+
+  @Override
+  public String toString() {
+    return "MemberLog{" +
+        "id=" + id +
+        ", uid=" + uid +
+        ", action=" + action +
+        ", ipAddress='" + ipAddress + '\'' +
+        ", createTime=" + createTime +
+        '}';
   }
 }

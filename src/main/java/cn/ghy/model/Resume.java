@@ -1,9 +1,3 @@
-/**
- * @Author: Ziyang
- * @Email: meetziyang@gmail.com
- * @Date: 2018/8/26 23:38
- * @Description:
- */
 package cn.ghy.model;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -19,6 +13,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @Author: Ziyang
+ * @Email: meetziyang@gmail.com
+ * @Date: 2018/8/26 23:38
+ * @Description:
+ */
 public class Resume {
 
   private String name;
@@ -193,7 +193,7 @@ public class Resume {
         ", birthday=" + birthday +
 
         ", gradeMajor='" + gradeMajor + '\'' +
-        ", QQ='" + QQ + '\'' +
+        ", QQ='" + qq + '\'' +
         ", email='" + email + '\'' +
         ", phone='" + phone + '\'' +
         ", office=" + office +
@@ -256,7 +256,7 @@ public class Resume {
     } else {
       birthdayT = simpleDateFormat.format(birthday);
     }
-    String[] personalInformation = {name, sex, birthdayT, gradeMajor, QQ, email, phone};
+    String[] personalInformation = {name, sex, birthdayT, gradeMajor, qq, email, phone};
     for (int i = 0; i < personalInformation.length; i++) {
       Cell cell = row.createCell(cellIndex++);
       cell.setCellValue(personalInformation[i]);

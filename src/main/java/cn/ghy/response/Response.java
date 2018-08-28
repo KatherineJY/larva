@@ -1,3 +1,5 @@
+package cn.ghy.response;
+
 /**
  * @Author: Ziyang
  * @Email: meetziyang@gmail.com
@@ -6,8 +8,6 @@
  * 也就是说，每个REST请求将返回相同结构的JSON响应结构。不妨定义一个相对通用的JSON响应结构，其中包含三部分：code， message， data。 code: http的status
  * * code与返回值；message：对应的文字描述信息；data： 对应数据的json字符串。 { "code": "404", "message": "ok", "data": ... }
  */
-package cn.ghy.response;
-
 public class Response {
 
   private Integer code;

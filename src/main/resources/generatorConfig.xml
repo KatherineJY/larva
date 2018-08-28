@@ -7,6 +7,7 @@
   <classPathEntry location="D:\\mysql-connector-java-8.0.11.jar"/>
 
   <context id="context" targetRuntime="MyBatis3Simple">
+
     <commentGenerator>
       <property name="suppressAllComments" value="true"/>
       <property name="suppressDate" value="false"/>
@@ -32,10 +33,7 @@
       <property name="enableSubPackages" value="false"/>
     </javaClientGenerator>
 
-    <table schema="larva" tableName="member" enableCountByExample="false"
-      enableDeleteByExample="false"
-      enableSelectByExample="false" enableUpdateByExample="false"/>
-    <table schema="larva" tableName="member_log" enableCountByExample="false"
+    <table schema="larva" tableName="" enableCountByExample="false"
       enableDeleteByExample="false"
       enableSelectByExample="false" enableUpdateByExample="false"/>
   </context>

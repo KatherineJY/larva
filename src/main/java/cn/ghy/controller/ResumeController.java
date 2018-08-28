@@ -1,9 +1,3 @@
-/**
- * @Author: Ziyang
- * @Email: meetziyang@gmail.com
- * @Date: 2018/8/26 23:38
- * @Description:
- */
 package cn.ghy.controller;
 
 import cn.ghy.model.Resume;
@@ -12,6 +6,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
 
+/**
+ * @Author: Ziyang
+ * @Email: meetziyang@gmail.com
+ * @Date: 2018/8/26 23:38
+ * @Description:
+ */
 @Controller
 @RequestMapping(value = "/resume")
 public class ResumeController {

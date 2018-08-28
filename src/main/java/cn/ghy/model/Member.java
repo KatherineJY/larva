@@ -1,9 +1,3 @@
-/**
- * @Author: Ziyang
- * @Email: meetziyang@gmail.com
- * @Date: 2018/8/26 23:38
- * @Description:
- */
 package cn.ghy.model;
 
 import java.util.Date;
@@ -88,5 +82,19 @@ public class Member {
 
   public void setModifiedTime(Date modifiedTime) {
     this.modifiedTime = modifiedTime;
+  }
+
+  @Override
+  public String toString() {
+    return "Member{" +
+        "uid=" + uid +
+        ", userName='" + userName + '\'' +
+        ", realName='" + realName + '\'' +
+        ", email='" + email + '\'' +
+        ", password='" + password + '\'' +
+        ", avatar='" + avatar + '\'' +
+        ", createTime=" + createTime +
+        ", modifiedTime=" + modifiedTime +
+        '}';
   }
 }

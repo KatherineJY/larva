@@ -1,6 +1,8 @@
 package cn.ghy.api;
 
 import cn.ghy.model.Member;
+import cn.ghy.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/member")
 public class MemberController {
 
-  @RequestMapping(value = "/{uid}", method = RequestMethod.GET)
-  public Member getMember(@PathVariable("id") int id){
+  @Autowired
+  private MemberService memberService;
 
+  @RequestMapping(value = "/{uid}", method = RequestMethod.GET)
+  public Member getMember(@PathVariable("uid") int uid) {
+    return memberService.selectByPrimaryKey(uid);
   }
 }
