@@ -9,15 +9,12 @@
   <mvc:default-servlet-handler/>
   <!-- Using Spring MVC provides annotation-driven feature -->
   <mvc:annotation-driven/>
-  <!-- Processing requests for static resources -->
-  <mvc:resources mapping="/special/**" location="/special/"/>
-  <mvc:resources mapping="/statics/**" location="/statics/"/>
   <!-- Spring Auto scanning components -->
-  <context:component-scan base-package="cn.ghy.controller,cn.ghy.api"/>
-  <!-- View Resolver -->
-  <bean id="internalResourceViewResolver"
-    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    <property name="prefix" value="/"/>
-    <property name="suffix" value=".html"/>
-  </bean>
+  <context:component-scan base-package="cn.ghy.controller"/>
+  <!--&lt;!&ndash; View Resolver &ndash;&gt;-->
+  <!--<bean id="internalResourceViewResolver"-->
+    <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+    <!--<property name="prefix" value="/"/>-->
+    <!--<property name="suffix" value=".html"/>-->
+  <!--</bean>-->
 </beans>

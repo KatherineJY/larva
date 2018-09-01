@@ -1,7 +1,7 @@
 package cn.ghy.controller;
 
-import cn.ghy.model.Resume;
-import org.springframework.stereotype.Controller;
+import cn.ghy.entity.Resume;
+import cn.ghy.base.Response;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
@@ -12,20 +12,13 @@ import java.io.*;
  * @Date: 2018/8/26 23:38
  * @Description:
  */
-@Controller
-@RequestMapping(value = "/resume")
+@RestController
+@RequestMapping(value = "/api/resume")
 public class ResumeController {
 
-  @RequestMapping(value = "/")
-  public String index() {
-    return "/resume/index";
-  }
-
   @RequestMapping(value = "/postResume", method = RequestMethod.POST)
-  public String postResume(@ModelAttribute Resume resume) throws IOException {
+  public Response postResume(@ModelAttribute Resume resume) throws IOException {
     resume.write2EXCEL("D:/resumes_2018.xlsx");
-    return "/resume/successful";
+    return new Response();
   }
-
-
 }
