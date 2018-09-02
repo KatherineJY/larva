@@ -1,6 +1,7 @@
 package cn.ghy.service;
 
 import cn.ghy.entity.User;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +25,14 @@ public class UserServiceTest {
   @Test
   public void selectById() {
     User user = userService.selectById(5);
+    System.out.println(user.toString());
+  }
+  @Test
+  public void selectByEmail() {
+    String s = "meetziyang@qq.com";
+    EntityWrapper<User> entityWrapper = new EntityWrapper<>();
+    entityWrapper.eq("email",s);
+    User user = userService.selectOne(entityWrapper);
     System.out.println(user.toString());
   }
 }

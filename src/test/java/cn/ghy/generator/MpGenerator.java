@@ -22,7 +22,7 @@ public class MpGenerator {
   public void generateCode() {
     String packageName = "cn.ghy";
     boolean serviceNameStartWithI = false;//user -> UserService, 设置成true: user -> IUserService
-    generateByTables(serviceNameStartWithI, packageName, "user_role", "permission","role_permission");
+    generateByTables(serviceNameStartWithI, packageName, "user");
   }
 
   private void generateByTables(boolean serviceNameStartWithI, String packageName, String...

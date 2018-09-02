@@ -51,7 +51,7 @@ public class User implements Serializable {
   /**
    * 标记是否可用
    */
-  private Integer isAvaliable;
+  private Integer isEnabled;
 
 
   public Integer getUid() {
@@ -118,12 +118,12 @@ public class User implements Serializable {
     this.modifiedTime = modifiedTime;
   }
 
-  public Integer getIsAvaliable() {
-    return isAvaliable;
+  public Integer getIsEnabled() {
+    return isEnabled;
   }
 
-  public void setIsAvaliable(Integer isAvaliable) {
-    this.isAvaliable = isAvaliable;
+  public void setIsEnabled(Integer isEnabled) {
+    this.isEnabled = isEnabled;
   }
 
   @Override
@@ -137,7 +137,7 @@ public class User implements Serializable {
         ", avatar=" + avatar +
         ", createTime=" + createTime +
         ", modifiedTime=" + modifiedTime +
-        ", isAvaliable=" + isAvaliable +
+        ", isEnabled=" + isEnabled +
         "}";
   }
 }

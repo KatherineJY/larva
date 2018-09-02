@@ -12,12 +12,12 @@ import java.io.*;
  * @Date: 2018/8/26 23:38
  * @Description:
  */
-@RestController
 @RequestMapping(value = "/api/resume")
+@RestController
 public class ResumeController {
 
-  @RequestMapping(value = "/postResume", method = RequestMethod.POST)
-  public Response postResume(@ModelAttribute Resume resume) throws IOException {
+  @RequestMapping(value = "", method = RequestMethod.POST)
+  public Response index(@ModelAttribute Resume resume) throws IOException {
     resume.write2EXCEL("D:/resumes_2018.xlsx");
     return new Response();
   }

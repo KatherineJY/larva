@@ -7,10 +7,12 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
- * @Author: Ziyang
- * @Email: meetziyang@gmail.com
- * @Date: 2018/9/1 23:21
- * @Description:
+ * <p>
+ * 用户 服务实现类
+ * </p>
+ *
+ * @author Ziyang
+ * @since 2018-09-02
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {

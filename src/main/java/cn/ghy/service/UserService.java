@@ -4,10 +4,12 @@ import cn.ghy.entity.User;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
- * @Author: Ziyang
- * @Email: meetziyang@gmail.com
- * @Date: 2018/9/1 23:21
- * @Description:
+ * <p>
+ * 用户 服务类
+ * </p>
+ *
+ * @author Ziyang
+ * @since 2018-09-02
  */
 public interface UserService extends IService<User> {
 

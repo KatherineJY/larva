@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
  * @Description:
  */
 @Controller
-@RequestMapping("/api/admin/role")
+@RequestMapping("/api/role")
 public class RoleController {
 
 }
