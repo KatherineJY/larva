@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
  * @Description:
  */
 @Controller
-@RequestMapping("/api/admin/permission")
+@RequestMapping("/api/permission")
 public class PermissionController {
 
 }

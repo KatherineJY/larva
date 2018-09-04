@@ -26,6 +26,7 @@
     <spring.version>5.0.7.RELEASE</spring.version>
 
     <mybatis-plus.version>2.3</mybatis-plus.version>
+
     <mysql-connector-java.version>8.0.12</mysql-connector-java.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
 
