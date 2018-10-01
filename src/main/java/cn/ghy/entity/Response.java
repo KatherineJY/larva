@@ -1,4 +1,4 @@
-package cn.ghy.base;
+package cn.ghy.entity;
 
 /**
  * @Author: Ziyang
@@ -17,7 +17,7 @@ public class Response {
 
   public Response() {
     this.setCode(200);
-    this.setMessage("ok");
+    this.setMessage("Successful.");
   }
 
   public Response(Integer code, String message) {

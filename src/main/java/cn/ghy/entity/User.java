@@ -6,10 +6,12 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import java.io.Serializable;
 
 /**
- * @Author: Ziyang
- * @Email: meetziyang@gmail.com
- * @Date: 2018/9/1 23:21
- * @Description:
+ * <p>
+ * 用户
+ * </p>
+ *
+ * @author Ziyang
+ * @since 2018-10-01
  */
 public class User implements Serializable {
 
@@ -41,17 +43,21 @@ public class User implements Serializable {
    */
   private String avatar;
   /**
-   * 用户创建时间
+   * 创建时间
    */
   private Date createTime;
   /**
-   * 上次修改信息时间
+   * 上次修改时间
    */
   private Date modifiedTime;
   /**
-   * 标记是否可用
+   * 是否可用
    */
   private Integer isEnabled;
+  /**
+   * 是否逻辑删除
+   */
+  private Integer isDeleted;
 
 
   public Integer getUid() {
@@ -126,6 +132,14 @@ public class User implements Serializable {
     this.isEnabled = isEnabled;
   }
 
+  public Integer getIsDeleted() {
+    return isDeleted;
+  }
+
+  public void setIsDeleted(Integer isDeleted) {
+    this.isDeleted = isDeleted;
+  }
+
   @Override
   public String toString() {
     return "User{" +
@@ -138,6 +152,7 @@ public class User implements Serializable {
         ", createTime=" + createTime +
         ", modifiedTime=" + modifiedTime +
         ", isEnabled=" + isEnabled +
+        ", isDeleted=" + isDeleted +
         "}";
   }
 }

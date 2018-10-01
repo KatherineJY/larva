@@ -17,7 +17,7 @@ import java.util.Date;
  * @Author: Ziyang
  * @Email: meetziyang@gmail.com
  * @Date: 2018/8/26 23:38
- * @Description:
+ * @Description: 简历
  */
 public class Resume {
 
@@ -210,7 +210,7 @@ public class Resume {
         '}';
   }
 
-  public void write2EXCEL(String excelFilePath) throws IOException {
+  public void write2Excel(String excelFilePath) throws IOException {
     File file = new File(excelFilePath);
     XSSFWorkbook workbook = null;
     FileOutputStream fileOutputStream = null;

@@ -23,8 +23,19 @@ public class UserServiceTest {
   private UserService userService;
 
   @Test
+  public void insert() {
+    User user = new User();
+    user.setUserName("SignorinoY");
+    user.setEmail("meetziyang@q1123.com");
+    user.setRealName("龚梓阳");
+    user.setPassword("123456");
+    //user.setAvatar("none");
+    System.out.println(userService.insert(user));
+  }
+
+  @Test
   public void selectById() {
-    User user = userService.selectById(5);
+    User user = userService.selectById(7);
     System.out.println(user.toString());
   }
   @Test

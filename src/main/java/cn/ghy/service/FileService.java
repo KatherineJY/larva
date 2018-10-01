@@ -1,16 +1,16 @@
 package cn.ghy.service;
 
-import cn.ghy.entity.User;
+import cn.ghy.entity.File;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
  * <p>
- * 用户 服务类
+ * 文件 服务类
  * </p>
  *
  * @author Ziyang
  * @since 2018-10-01
  */
-public interface UserService extends IService<User> {
+public interface FileService extends IService<File> {
 
 }

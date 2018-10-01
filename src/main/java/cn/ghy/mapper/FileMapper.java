@@ -1,16 +1,16 @@
 package cn.ghy.mapper;
 
-import cn.ghy.entity.User;
+import cn.ghy.entity.File;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
  * <p>
- * 用户 Mapper 接口
+ * 文件 Mapper 接口
  * </p>
  *
  * @author Ziyang
  * @since 2018-10-01
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface FileMapper extends BaseMapper<File> {
 
 }
