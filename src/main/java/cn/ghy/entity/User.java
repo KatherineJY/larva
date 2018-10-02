@@ -1,17 +1,21 @@
 package cn.ghy.entity;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.enums.IdType;
 import java.io.Serializable;
+import java.util.Date;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * <p>
- * 用户
- * </p>
- *
- * @author Ziyang
- * @since 2018-10-01
+ * @Author: Ziyang
+ * @Email: meetziyang@gmail.com
+ * @Date: 2018/10/1 23:38
+ * @Description: 用户
  */
 public class User implements Serializable {
 
@@ -25,30 +29,52 @@ public class User implements Serializable {
   /**
    * 用户名
    */
+  @NotNull
+  @Size(min = 3, max = 20)
   private String userName;
   /**
    * 真实姓名
    */
+  @NotNull
+  @Size(min = 2, max = 15)
   private String realName;
   /**
    * 电子邮箱
    */
+  @NotNull
+  @Email
+  @Size(min = 6, max = 20)
   private String email;
   /**
    * 密码
    */
+
+  @NotNull
+  //需考虑密码加密后的密码情况
+  //至少8字符
+  //至少1数字字符
+  //至少1小写字母
+  //至少1大写字母
+  //至少1特殊字符
+  //@Pattern(regexp = "^(?=.*?[A-Z])(?=(.*[a-z])+)(?=(.*[\\d])+)(?=(.*[\\W])+)(?!.*\\s).{6,20}$")
   private String password;
   /**
    * 头像地址
    */
+  @NotNull
+  @Pattern(regexp = "([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)")
   private String avatar;
   /**
    * 创建时间
    */
+  @Past
+  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss:SSS")
   private Date createTime;
   /**
    * 上次修改时间
    */
+  @Past
+  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss:SSS")
   private Date modifiedTime;
   /**
    * 是否可用
@@ -105,7 +131,11 @@ public class User implements Serializable {
   }
 
   public void setAvatar(String avatar) {
-    this.avatar = avatar;
+    if (avatar.isEmpty()) {
+      this.avatar = "/upload/avatar/default.png";
+    } else {
+      this.avatar = avatar;
+    }
   }
 
   public Date getCreateTime() {

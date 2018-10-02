@@ -20,4 +20,11 @@
     <!-- 指定所上传文件的总大小不能超过10M。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
     <property name="maxUploadSize" value="10485760"/>
   </bean>
+
+  <!-- 注册验证器 -->
+  <mvc:annotation-driven validator="validator"/>
+  <bean id="validator"
+    class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+  </bean>
 </beans>

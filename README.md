@@ -13,6 +13,7 @@ Larva是一款基于SpringMvc的网站内容后台管理系统，内置用户管
 - 使用ReactJS进行页面交互
 
 - 权限管理：用户、角色、权限等
+- 文件管理
 - 网站通知公告
 - 网站内容除标签、类别等常规属性外，可具有多种属性，如作者、日期、简介、链接，banner等（希望实现后期随时添加新属性）
 - 网站的内容编辑器可以使用markdown语言，方便网站文字样式的统一
@@ -31,11 +32,19 @@ Larva是一款基于SpringMvc的网站内容后台管理系统，内置用户管
 
 ## 技术选型
 1、后端
-- 核心框架：spring-core 5.0.7.RELEASE
-- 安全框架： spring security 5.0.7.RELEASE
-- 视图框架： spring webmvc 5.0.7.RELEASE
+- 核心框架：spring-core 5.1.0.RELEASE
+- 安全框架： spring-security 5.0.7.RELEASE
+- 视图框架： spring-webmvc 5.0.7.RELEASE
 - 持久层框架： mybatis plus 2.3
-- 数据库连接池： commons dbcp 1.4
+  - 模板引擎： velocity 2.0, freemaker 2.3.28
+- 数据库连接： mysql-connector-java 8.0.12
+  - 数据库连接池： commons dbcp 1.4
+- 数据校验： hibernate-validator 6.0.13.Final
+  - 统一表达式语言： javax.el 3.0.1-b09
+- Json格式转换： jackson-databind 2.9.2
+- Microsoft文档操作： poi 3.17
+- 文件上传： commons-fileupload 1.3.3
+- 文件操作： commons-io 2.6
+---
 - 日志管理： log4j 1.2.17
 - 测试工具： junit 4.12
-- Microsoft文档操作： poi 
