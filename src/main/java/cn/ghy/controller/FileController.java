@@ -1,10 +1,9 @@
 package cn.ghy.controller;
 
-import java.io.File;
 import cn.ghy.entity.Response;
 import cn.ghy.service.FileService;
 import cn.ghy.utils.FileUtils;
-import java.util.Iterator;
+import java.io.File;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,18 +26,20 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 @RestController
 public class FileController {
 
-  @Autowired
-  private FileService fileService;
+  private final FileService fileService;
 
-  private String root =
-      this.getClass().getClassLoader().getResource("/").getPath().replaceAll("WEB-INF/classes/", "")
-          + "upload/";
+  private String root = new FileUtils().root;
+
+  @Autowired
+  public FileController(FileService fileService) {
+    this.fileService = fileService;
+  }
 
   @RequestMapping(value = "/file/{destination}", method = RequestMethod.POST)
   public Response insert(@PathVariable String destination, HttpServletRequest request)
       throws Exception {
-    /**
-     * @description: 单/多文件上传
+    /*
+      @description: 单/多文件上传
      * @param: [destination, request]
      * @return: cn.ghy.entity.Response
      */
@@ -63,7 +64,7 @@ public class FileController {
         if (file != null) {
           String fileName = file.getOriginalFilename();
           //如果名称不为“”,说明该文件存在，否则说明该文件不存在
-          if (!fileName.trim().equals("")) {
+          if (!"".equals(fileName.trim())) {
             file.transferTo(new File(absolutePath + fileName));
 
             cn.ghy.entity.File fileEntity = new cn.ghy.entity.File();

@@ -1,17 +1,21 @@
 package cn.ghy.entity;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @Author: Ziyang
@@ -21,14 +25,30 @@ import java.util.Date;
  */
 public class Resume {
 
+  @NotNull
+  @Size(min = 2, max = 15)
   private String name;
+
   private String sex;
+
+  @Past
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date birthday;
+
+  @NotNull
   private String gradeMajor;
+
+  @Pattern(regexp = "^[1-9][0-9]{4,9}$")
   private String qq;
+
+  @NotNull
+  @Email
   private String email;
+
+  @NotNull
+  @Pattern(regexp = "^((0\\d{2,3}-\\d{7,8})|(1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}))$")
   private String phone;
+
   private boolean office;
   private boolean operationDepartment;
   private boolean developmentDepartment;

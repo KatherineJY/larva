@@ -10,6 +10,10 @@ import java.io.File;
  */
 public class FileUtils {
 
+  public String root =
+      this.getClass().getClassLoader().getResource("/").getPath().replaceAll("WEB-INF/classes/", "")
+          + "upload/";
+
   public String getFileShortName(String fileName) {
     /**
      * @description: 获取文件名

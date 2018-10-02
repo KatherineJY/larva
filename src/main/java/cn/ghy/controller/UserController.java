@@ -27,17 +27,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
+  private final UserService userService;
+
   @Autowired
-  private UserService userService;
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
 
   @RequestMapping(value = "/{uid}", method = RequestMethod.GET)
   public Response selectById(@PathVariable int uid) {
-    User user = userService.selectById(uid);
+    Response response;
+    User user = userService.selectOne(new EntityWrapper<User>().eq("uid", uid).eq("is_deleted", 0));
     if (user != null) {
-      return new Response(200, "Successful.", user);
+      response = new Response(200, "Successful.", user);
     } else {
-      return new Response(404, "User not found.");
+      response = new Response(404, "The user not found.");
     }
+    return response;
   }
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -48,6 +54,7 @@ public class UserController {
       @RequestParam(value = "email", defaultValue = "") String email,
       @RequestParam(value = "sortby", defaultValue = "uid") String column,
       @RequestParam(value = "order", defaultValue = "asc") String order) {
+    Response response;
     Page<User> userPage = userService
         .selectPage(new Page<User>(page, perPage),
             new EntityWrapper<User>().eq("is_deleted", 0).like("user_name", userName)
@@ -55,44 +62,70 @@ public class UserController {
                 .orderBy(column, new PageUtils().isAsc(order))
         );
     if (userPage.getSize() > 0) {
-      return new Response(200, "Successful.", userPage);
+      response = new Response(200, "Successful.", userPage);
     } else {
-      return new Response(404, "User not found.");
+      response = new Response(404, "User not found.");
     }
-  }
-
-  @RequestMapping(value = "", method = RequestMethod.POST)
-  public Response insert(@RequestBody @Valid User user, BindingResult result) {
-    if (result.hasErrors()) {
-      return new Response(400, "Illegal input.");
-    }
-    if (userService.insert(user)) {
-      return new Response(201, "User has been successfully created.");
-    } else {
-      return new Response(400, "Failed to create user.");
-    }
+    return response;
   }
 
   @RequestMapping(value = "", method = RequestMethod.PUT)
   public Response updateById(@RequestBody @Valid User user, BindingResult result) {
+    Response response;
     if (result.hasErrors()) {
-      return new Response(400, "Illegal input.");
-    }
-    if (userService.selectCount(new EntityWrapper<User>().eq("uid", user.getUid())) > 0) {
-      userService.update(user, new EntityWrapper<User>().eq("uid", user.getUid()));
-      return new Response(201, "User has been successfully updated.");
+      response = new Response(400, "Illegal input.", result.toString());
     } else {
-      return new Response(400, "User does not exist and cannot be updated.");
+      try {
+        if (userService
+            .selectCount(new EntityWrapper<User>().eq("uid", user.getUid()).eq("is_deleted", 0))
+            > 0) {
+          userService.update(user, new EntityWrapper<User>().eq("uid", user.getUid()));
+          response = new Response(201, "The user has been successfully updated.");
+        } else {
+          response = new Response(400, "The user does not exist and cannot be updated.");
+        }
+      } catch (Exception e) {
+        response = new Response(400, "Failed to update the user.");
+      }
     }
+    return response;
+  }
+
+  @RequestMapping(value = "/{uid}/enable", method = RequestMethod.PUT)
+  public Response enableById(@PathVariable int uid) {
+    Response response;
+    try {
+      User user = userService
+          .selectOne(new EntityWrapper<User>().eq("uid", uid).eq("is_deleted", 0));
+      if (user != null) {
+        user.setIsEnabled(1);
+        userService.updateById(user);
+        response = new Response(201, "The user has been successfully enabled.");
+      } else {
+        response = new Response(400, "The user does not exist and cannot be enabled.");
+      }
+    } catch (Exception e) {
+      response = new Response(400, "Failed to enable the user.");
+    }
+    return response;
   }
 
   @RequestMapping(value = "/{uid}", method = RequestMethod.DELETE)
   public Response deleteById(@PathVariable int uid) {
-    if (userService.selectCount(new EntityWrapper<User>().eq("uid", uid)) > 0) {
-      userService.deleteById(uid);
-      return new Response(204, "The user has been successfully deleted");
-    } else {
-      return new Response(400, "User does not exist and cannot be deleted.");
+    Response response;
+    try {
+      User user = userService
+          .selectOne(new EntityWrapper<User>().eq("uid", uid).eq("is_deleted", 0));
+      if (user != null) {
+        user.setIsDeleted(1);
+        userService.updateById(user);
+        response = new Response(204, "The user has been successfully deleted.");
+      } else {
+        response = new Response(400, "The user does not exist and cannot be deleted.");
+      }
+    } catch (Exception e) {
+      response = new Response(400, "Failed to delete the user.");
     }
+    return response;
   }
 }

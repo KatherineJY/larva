@@ -33,7 +33,7 @@ public class CustomUserDetailService implements UserDetailsService {
     cn.ghy.entity.User user = userService.selectOne(entityWrapper);
     Collection<GrantedAuthority> authList = getAuthorities();
     userDetails = new org.springframework.security.core.userdetails.User(user.getEmail(),
-        user.getPassword(), user.getIsEnabled() == 1 ? true : false, true, true, true,
+        user.getPassword(), user.getIsEnabled() == 1, true, true, true,
         authList);
     return userDetails;
   }
