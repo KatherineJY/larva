@@ -1,8 +1,7 @@
 package cn.ghy.entity;
 
+import cn.ghy.utils.FileUtils;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,7 +37,7 @@ public class Resume {
   @NotNull
   private String gradeMajor;
 
-  @Pattern(regexp = "^[1-9][0-9]{4,9}$")
+  @Pattern(regexp = "[1-9][0-9]{4,}")
   private String qq;
 
   @NotNull
@@ -46,19 +45,41 @@ public class Resume {
   private String email;
 
   @NotNull
-  @Pattern(regexp = "^((0\\d{2,3}-\\d{7,8})|(1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}))$")
+  //支持手机号码，3-4位区号，7-8位直播号码，1－4位分机号
+  @Pattern(regexp = "^((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)")
   private String phone;
 
+  @NotNull
   private boolean office;
+
+  @NotNull
   private boolean operationDepartment;
+
+  @NotNull
   private boolean developmentDepartment;
+
+  @NotNull
   private boolean designDepartment;
+
+  @NotNull
   private boolean filmDepartment;
+
+  @NotNull
   private boolean informationDepartment;
+
+  @NotNull
   private boolean lifeWebsite;
+
+  @NotNull
   private boolean musicWebsite;
+
+  @NotNull
   private boolean softwareWebsite;
+
+  @NotNull
   private boolean studyWebsite;
+
+  @NotNull
   private String reason;
 
   public String getName() {
@@ -230,11 +251,12 @@ public class Resume {
         '}';
   }
 
+
   public void write2Excel(String excelFilePath) throws IOException {
+
+    FileUtils fileUtils = new FileUtils();
     File file = new File(excelFilePath);
-    XSSFWorkbook workbook = null;
-    FileOutputStream fileOutputStream = null;
-    FileInputStream fileInputStream = null;
+    XSSFWorkbook workbook;
 
     //初始化excel文件
     if (!file.exists()) {
@@ -249,22 +271,10 @@ public class Resume {
         Cell cell = row.createCell(i);
         cell.setCellValue(excelHeaders[i]);
       }
-      try {
-        fileOutputStream = new FileOutputStream(excelFilePath);
-        workbook.write(fileOutputStream);
-      } finally {
-        fileOutputStream.close();
-      }
+      fileUtils.writeExcel(workbook, excelFilePath);
     }
 
-    //保存报名信息至excel文件
-    try {
-      fileInputStream = new FileInputStream(excelFilePath);
-      workbook = new XSSFWorkbook(fileInputStream);
-
-    } finally {
-      fileInputStream.close();
-    }
+    workbook = fileUtils.readExcel(excelFilePath);
     XSSFSheet sheet = workbook.getSheetAt(0);
     Row row = sheet.createRow(sheet.getLastRowNum() + 1);
     int cellIndex = 0;
@@ -277,17 +287,17 @@ public class Resume {
       birthdayT = simpleDateFormat.format(birthday);
     }
     String[] personalInformation = {name, sex, birthdayT, gradeMajor, qq, email, phone};
-    for (int i = 0; i < personalInformation.length; i++) {
+    for (String aPersonalInformation : personalInformation) {
       Cell cell = row.createCell(cellIndex++);
-      cell.setCellValue(personalInformation[i]);
+      cell.setCellValue(aPersonalInformation);
     }
     boolean[] personalIntention = {
         office, operationDepartment, developmentDepartment, designDepartment, filmDepartment,
         informationDepartment, lifeWebsite, musicWebsite, softwareWebsite, studyWebsite
     };
-    for (int i = 0; i < personalIntention.length; i++) {
+    for (boolean aPersonalIntention : personalIntention) {
       Cell cell = row.createCell(cellIndex++);
-      cell.setCellValue(personalIntention[i]);
+      cell.setCellValue(aPersonalIntention);
     }
     Cell cell = row.createCell(cellIndex++);
     cell.setCellValue(reason);
@@ -295,11 +305,7 @@ public class Resume {
     cell = row.createCell(cellIndex++);
     Date now = new Date();
     cell.setCellValue(simpleDateFormat.format(now));
-    try {
-      fileOutputStream = new FileOutputStream(excelFilePath);
-      workbook.write(fileOutputStream);
-    } finally {
-      fileOutputStream.close();
-    }
+
+    fileUtils.writeExcel(workbook, excelFilePath);
   }
 }

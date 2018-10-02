@@ -60,7 +60,7 @@ public class RegisterController {
     return new Response(200, "Successful.", isEmailAvailable(email));
   }
 
-  public boolean isEmailAvailable(String email) {
+  private boolean isEmailAvailable(String email) {
     return userService.selectCount(new EntityWrapper<User>().eq("email", email)) == 0;
   }
 }

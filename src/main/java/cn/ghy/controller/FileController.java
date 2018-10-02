@@ -4,6 +4,7 @@ import cn.ghy.entity.Response;
 import cn.ghy.service.FileService;
 import cn.ghy.utils.FileUtils;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,10 @@ public class FileController {
 
   private final FileService fileService;
 
-  private String root = new FileUtils().root;
+  private String root = new FileUtils().getRoot();
 
   @Autowired
-  public FileController(FileService fileService) {
+  public FileController(FileService fileService) throws UnsupportedEncodingException {
     this.fileService = fileService;
   }
 
@@ -64,6 +65,7 @@ public class FileController {
         if (file != null) {
           String fileName = file.getOriginalFilename();
           //如果名称不为“”,说明该文件存在，否则说明该文件不存在
+          assert fileName != null;
           if (!"".equals(fileName.trim())) {
             file.transferTo(new File(absolutePath + fileName));
 
