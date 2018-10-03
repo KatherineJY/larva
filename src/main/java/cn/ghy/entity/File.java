@@ -6,12 +6,10 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 
 /**
- * <p>
- * 文件
- * </p>
- *
- * @author Ziyang
- * @since 2018-10-04
+ * @Author: Ziyang
+ * @Email: meetziyang@gmail.com
+ * @Date: 2018/10/1 11:10
+ * @Description: 文件
  */
 public class File implements Serializable {
 
