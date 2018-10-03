@@ -1,7 +1,7 @@
 package cn.ghy.service;
 
 import cn.ghy.entity.File;
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.service.IService;
  * </p>
  *
  * @author Ziyang
- * @since 2018-10-01
+ * @since 2018-10-04
  */
 public interface FileService extends IService<File> {
 

@@ -3,7 +3,7 @@ package cn.ghy.controller;
 import cn.ghy.entity.Response;
 import cn.ghy.entity.User;
 import cn.ghy.service.UserService;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -43,7 +43,7 @@ public class RegisterController {
           String encodedPassword = "{bcrypt}" + new BCryptPasswordEncoder().encode(rawPassword);
           user.setPassword(encodedPassword);
           System.out.println(encodedPassword);
-          System.out.println(userService.insert(user));
+          System.out.println(userService.save(user));
           response = new Response(201, "User has been successfully created.");
         } catch (Exception e) {
           response = new Response(400, "Failed to create user.");
@@ -61,6 +61,6 @@ public class RegisterController {
   }
 
   public boolean isEmailAvailable(String email) {
-    return userService.selectCount(new EntityWrapper<User>().eq("email", email)) == 0;
+    return userService.count(new QueryWrapper<User>().eq("email", email)) == 0;
   }
 }

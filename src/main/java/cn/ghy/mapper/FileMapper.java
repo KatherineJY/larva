@@ -1,7 +1,7 @@
 package cn.ghy.mapper;
 
 import cn.ghy.entity.File;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author Ziyang
- * @since 2018-10-01
+ * @since 2018-10-04
  */
 public interface FileMapper extends BaseMapper<File> {
 

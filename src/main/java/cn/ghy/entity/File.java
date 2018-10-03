@@ -1,15 +1,17 @@
 package cn.ghy.entity;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.time.LocalDateTime;
 import java.io.Serializable;
 
 /**
- * @Author: Ziyang
- * @Email: meetziyang@gmail.com
- * @Date: 2018/10/1 11:10
- * @Description: 文件
+ * <p>
+ * 文件
+ * </p>
+ *
+ * @author Ziyang
+ * @since 2018-10-04
  */
 public class File implements Serializable {
 
@@ -20,47 +22,56 @@ public class File implements Serializable {
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
+
     /**
      * 文件名
      */
     private String name;
+
     /**
      * 文件后缀
      */
     private String suffix;
+
     /**
      * 文件大小，单位bit
      */
     private Long size;
+
     /**
      * 本地路径
      */
     private String localUrl;
+
     /**
      * 客户端访问路径
      */
     private String visitUrl;
+
     /**
      * 文件描述
      */
     private String description;
+
     /**
      * 上传用户Id
      */
     private Integer uploadUid;
+
     /**
      * 创建时间
      */
-    private Date createTime;
+    private LocalDateTime createTime;
+
     /**
      * 是否逻辑删除
      */
     private Integer isDeleted;
+
     /**
      * 是否客户端可见
      */
     private Integer isVisible;
-
 
     public Long getId() {
         return id;
@@ -69,7 +80,6 @@ public class File implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getName() {
         return name;
     }
@@ -77,7 +87,6 @@ public class File implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
     public String getSuffix() {
         return suffix;
     }
@@ -85,7 +94,6 @@ public class File implements Serializable {
     public void setSuffix(String suffix) {
         this.suffix = suffix;
     }
-
     public Long getSize() {
         return size;
     }
@@ -93,7 +101,6 @@ public class File implements Serializable {
     public void setSize(Long size) {
         this.size = size;
     }
-
     public String getLocalUrl() {
         return localUrl;
     }
@@ -101,7 +108,6 @@ public class File implements Serializable {
     public void setLocalUrl(String localUrl) {
         this.localUrl = localUrl;
     }
-
     public String getVisitUrl() {
         return visitUrl;
     }
@@ -109,7 +115,6 @@ public class File implements Serializable {
     public void setVisitUrl(String visitUrl) {
         this.visitUrl = visitUrl;
     }
-
     public String getDescription() {
         return description;
     }
@@ -117,7 +122,6 @@ public class File implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
     public Integer getUploadUid() {
         return uploadUid;
     }
@@ -125,15 +129,13 @@ public class File implements Serializable {
     public void setUploadUid(Integer uploadUid) {
         this.uploadUid = uploadUid;
     }
-
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
-
     public Integer getIsDeleted() {
         return isDeleted;
     }
@@ -141,7 +143,6 @@ public class File implements Serializable {
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
-
     public Integer getIsVisible() {
         return isVisible;
     }
@@ -152,8 +153,8 @@ public class File implements Serializable {
 
     @Override
     public String toString() {
-        return "FileUtils{" +
-        ", id=" + id +
+        return "File{" +
+        "id=" + id +
         ", name=" + name +
         ", suffix=" + suffix +
         ", size=" + size +

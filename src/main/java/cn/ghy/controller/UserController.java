@@ -5,8 +5,9 @@ import cn.ghy.entity.Response;
 import cn.ghy.entity.User;
 import cn.ghy.service.UserService;
 import cn.ghy.utils.PageUtils;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -37,7 +38,7 @@ public class UserController {
   @RequestMapping(value = "/{uid}", method = RequestMethod.GET)
   public Response selectById(@PathVariable int uid) {
     Response response;
-    User user = userService.selectOne(new EntityWrapper<User>().eq("uid", uid).eq("is_deleted", 0));
+    User user = userService.getOne(new QueryWrapper<User>().eq("uid", uid).eq("is_deleted", 0));
     if (user != null) {
       response = new Response(200, "Successful.", user);
     } else {
@@ -55,11 +56,11 @@ public class UserController {
       @RequestParam(value = "sortby", defaultValue = "uid") String column,
       @RequestParam(value = "order", defaultValue = "asc") String order) {
     Response response;
-    Page<User> userPage = userService
-        .selectPage(new Page<User>(page, perPage),
-            new EntityWrapper<User>().eq("is_deleted", 0).like("user_name", userName)
+    IPage<User> userPage = userService
+        .page(new Page<>(page, perPage),
+            new QueryWrapper<User>().eq("is_deleted", 0).like("user_name", userName)
                 .like("real_name", realName).like("email", email)
-                .orderBy(column, new PageUtils().isAsc(order))
+                .orderBy(true, new PageUtils().isAsc(order), column)
         );
     if (userPage.getSize() > 0) {
       response = new Response(200, "Successful.", userPage);
@@ -77,9 +78,9 @@ public class UserController {
     } else {
       try {
         if (userService
-            .selectCount(new EntityWrapper<User>().eq("uid", user.getUid()).eq("is_deleted", 0))
+            .count(new QueryWrapper<User>().eq("uid", user.getUid()).eq("is_deleted", 0))
             > 0) {
-          userService.update(user, new EntityWrapper<User>().eq("uid", user.getUid()));
+          userService.update(user, new QueryWrapper<User>().eq("uid", user.getUid()));
           response = new Response(201, "The user has been successfully updated.");
         } else {
           response = new Response(400, "The user does not exist and cannot be updated.");
@@ -96,7 +97,7 @@ public class UserController {
     Response response;
     try {
       User user = userService
-          .selectOne(new EntityWrapper<User>().eq("uid", uid).eq("is_deleted", 0));
+          .getOne(new QueryWrapper<User>().eq("uid", uid).eq("is_deleted", 0));
       if (user != null) {
         user.setIsEnabled(1);
         userService.updateById(user);
@@ -115,7 +116,7 @@ public class UserController {
     Response response;
     try {
       User user = userService
-          .selectOne(new EntityWrapper<User>().eq("uid", uid).eq("is_deleted", 0));
+          .getOne(new QueryWrapper<User>().eq("uid", uid).eq("is_deleted", 0));
       if (user != null) {
         user.setIsDeleted(1);
         userService.updateById(user);

@@ -1,7 +1,7 @@
 package cn.ghy.mapper;
 
 import cn.ghy.entity.User;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author Ziyang
- * @since 2018-10-01
+ * @since 2018-10-03
  */
 public interface UserMapper extends BaseMapper<User> {
 

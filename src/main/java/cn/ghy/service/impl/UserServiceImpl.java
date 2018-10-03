@@ -3,7 +3,7 @@ package cn.ghy.service.impl;
 import cn.ghy.entity.User;
 import cn.ghy.mapper.UserMapper;
 import cn.ghy.service.UserService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author Ziyang
- * @since 2018-10-01
+ * @since 2018-10-03
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
