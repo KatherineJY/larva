@@ -117,8 +117,7 @@ public class UserController {
       User user = userService
           .selectOne(new EntityWrapper<User>().eq("uid", uid).eq("is_deleted", 0));
       if (user != null) {
-        user.setIsDeleted(1);
-        userService.updateById(user);
+        userService.deleteById(user);
         response = new Response(204, "The user has been successfully deleted.");
       } else {
         response = new Response(400, "The user does not exist and cannot be deleted.");

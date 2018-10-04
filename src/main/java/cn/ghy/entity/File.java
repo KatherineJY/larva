@@ -1,5 +1,6 @@
 package cn.ghy.entity;
 
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
@@ -55,6 +56,7 @@ public class File implements Serializable {
     /**
      * 是否逻辑删除
      */
+    @TableLogic
     private Integer isDeleted;
     /**
      * 是否客户端可见

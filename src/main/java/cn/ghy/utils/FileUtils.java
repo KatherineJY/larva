@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Objects;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
@@ -17,10 +18,47 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class FileUtils {
 
   public String getRoot() throws UnsupportedEncodingException {
-    String rawRoot = Objects.requireNonNull(this.getClass().getClassLoader().getResource("/")).getPath()
-        .replaceAll("WEB-INF/classes/", "")
-        + "upload/";
+    /**
+     * @description: 获取该项目根路径
+     * @param: []
+     * @return: java.lang.String
+     */
+    String rawRoot =
+        Objects.requireNonNull(this.getClass().getClassLoader().getResource("/")).getPath()
+            .replaceAll("WEB-INF/classes/", "")
+            + "upload/";
     return new UrlUtils().decodeUrl(rawRoot);
+  }
+
+  public boolean isDirectory(String directoryPath) {
+    /**
+     * @description: 判断是否为目录
+     * @param: [directoryPath]
+     * @return: boolean
+     */
+    return new File(directoryPath).isDirectory();
+  }
+
+  public boolean isDirectoryExits(String directoryPath) {
+    /**
+     * @description: 判断路径是否存在
+     * @param: [directoryPath]
+     * @return: boolean
+     */
+    return new File(directoryPath).exists();
+  }
+
+  public boolean isFile(String filePath) {
+    /**
+     * @description: 判断是否为文件
+     * @param: [filePath]
+     * @return: boolean
+     */
+    return new File(filePath).isFile();
+  }
+
+  public boolean isFileExit(String filePath) {
+    return new File(filePath).exists();
   }
 
   public String getFileShortName(String fileName) {
@@ -49,7 +87,7 @@ public class FileUtils {
 
   public void createDirectory(String directory) {
     /**
-     * @description:
+     * @description: 创建目录
      * @param: [directory]
      * @return: void
      */
@@ -88,4 +126,12 @@ public class FileUtils {
     }
     return workbook;
   }
+/*
+  public boolean fileDownload(HttpServletResponse httpServletResponse, String fileName){
+
+    httpServletResponse.setHeader("content-type", "application/octet-stream");
+    httpServletResponse.setHeader("Content-Disposition",
+        "attachment;filename=" + new UrlUtils().encodeUrl(fileName));
+    httpServletResponse.setContentType("application/octet-stream");
+  }*/
 }

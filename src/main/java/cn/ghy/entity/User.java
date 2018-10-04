@@ -1,6 +1,7 @@
 package cn.ghy.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.enums.IdType;
 import java.io.Serializable;
 import java.util.Date;
@@ -77,6 +78,7 @@ public class User implements Serializable {
   /**
    * 是否逻辑删除
    */
+  @TableLogic
   private Integer isDeleted;
 
 

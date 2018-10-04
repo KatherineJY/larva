@@ -1,7 +1,7 @@
 package cn.ghy.utils;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -12,7 +12,11 @@ import java.nio.charset.StandardCharsets;
  */
 public class UrlUtils {
 
-  public String decodeUrl(String encodedUrl) throws UnsupportedEncodingException {
+  public String encodeUrl(String decodedUrl) {
+    return URLEncoder.encode(decodedUrl, StandardCharsets.UTF_8);
+  }
+
+  public String decodeUrl(String encodedUrl) {
     return URLDecoder.decode(encodedUrl, StandardCharsets.UTF_8);
   }
 }
